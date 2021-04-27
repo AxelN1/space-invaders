@@ -8,6 +8,7 @@ import Alien from './components/Alien.jsx';
 import Banner from './img/space_invaders_banner.png';
 import Grandpa from './img/space_invader_Grandpa.png';
 import Grandma from './img/space_invader_Grandma.png';
+import StartGame from './components/StartGame';
 
 class App extends React.Component {
   constructor() {
@@ -41,21 +42,24 @@ class App extends React.Component {
     this.toBegin = this.toBegin.bind(this)
   }
 
+  // Création d'une fonction sans paramètre
   componentDidUpdate() {
+
+    // Si l'id du document est bigDiv, ça donne le focus à l'élément
     if (document.getElementById("bigDiv")) {
       document.getElementById("bigDiv").focus()
     }
   }
 
-  // 3/ La fonction toBegin change le state beginning en false.
-  toBegin() {
-    this.setState({
-      beginning: false,
-      // Au départ displayAlien est un array vide. 
-      // Grâce à la méthode fill on lui ajoute 10 éléments de valeurs true à partir de l'index 0
-      displayAlien: (new Array(10)).fill(true, 0)
-    })
-  }
+  // // 3/ La fonction toBegin change le state beginning en false.
+  // toBegin() {
+  //   this.setState({
+  //     beginning: false,
+  //     // Au départ displayAlien est un array vide. 
+  //     // Grâce à la méthode fill on lui ajoute 10 éléments de valeurs true à partir de l'index 0
+  //     displayAlien: (new Array(10)).fill(true, 0)
+  //   })
+  // }
 
   // 5/ Ici la touche 39 représente le keycode de la flêche de droite
   // touche 37 keycode de la flêche de gauche
@@ -212,11 +216,12 @@ class App extends React.Component {
           // Lorsque que l'on presse une touche la fonction keyDownHandler est appliqué avec
           // la touche du clavier tapée.
           <div
-            onKeyDown={(e) => { this.keyDownHandler(e) }}
-            id="bigDiv"
-            // tabindex permet de capturer le focus de la div, par défault on ne peut pas.
-            tabIndex={1}>
+          onKeyDown={(e) => { this.keyDownHandler(e) }}
+          id="bigDiv"
+          // tabindex permet de capturer le focus de la div, par défault on ne peut pas.
+          tabIndex={1}>
 
+          <StartGame />
             {/* Ici on parcours le tableau displayAlien grâce à map et on crée autant de 
             Alien qu'il y a d'élement dans le tableaux */}
             {
